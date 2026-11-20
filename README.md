@@ -51,7 +51,6 @@ portfolio/
 ## 자주 하는 수정
 
 | 하고 싶은 일 | 수정 위치 |
-|---|---|
 | 색상 변경 | `site/scss/abstracts/_variables.scss` 의 `$themes` |
 | 중단점 변경 | `site/scss/abstracts/_variables.scss` 의 `$breakpoints` |
 | 프로젝트·이력 수정 | `site/js/data.js` |
