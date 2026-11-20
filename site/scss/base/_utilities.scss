@@ -1,0 +1,46 @@
+@use "../abstracts" as *;
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include respond(wide) {
+    max-width: 1080px;
+    padding: 0 32px;
+  }
+
+  @include respond(tablet) {
+    padding: 0 28px;
+  }
+
+  @include respond(mobile) {
+    padding: 0 20px;
+  }
+
+  @include respond(sm) {
+    padding: 0 16px;
+  }
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+.skip-link {
+  position: fixed;
+  top: calc(var(--safe-top) + 8px);
+  left: 12px;
+  z-index: 70;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+  }
+}

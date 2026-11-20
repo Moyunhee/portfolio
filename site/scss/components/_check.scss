@@ -1,0 +1,125 @@
+@use "../abstracts" as *;
+
+// Checkbox and radio: native input hidden, custom box shown
+.check {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  cursor: pointer;
+
+  &__input {
+    @include visually-hidden;
+  }
+
+  &__box {
+    position: relative;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--color-muted);
+    border-radius: 6px;
+    background: var(--color-surface);
+    transition: background 0.15s, border-color 0.15s;
+
+    // Check mark
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 6px;
+      height: 11px;
+      border: solid var(--color-on-primary);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.15s;
+    }
+  }
+
+  &__input:checked + &__box {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+
+    &::after {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+  &__input:focus-visible + &__box {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &--radio {
+    .check__box {
+      border-radius: 50%;
+
+      &::after {
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        margin: -5px 0 0 -5px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--color-on-primary);
+        transform: scale(0);
+      }
+    }
+
+    .check__input:checked + .check__box::after {
+      transform: scale(1);
+    }
+  }
+}
+
+.switch {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  cursor: pointer;
+
+  &__input {
+    @include visually-hidden;
+  }
+
+  &__track {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 26px;
+    border-radius: 99px;
+    background: var(--color-muted);
+    transition: background 0.2s;
+
+    // Knob
+    &::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      transition: transform 0.2s $ease;
+    }
+  }
+
+  &__input:checked + &__track {
+    background: var(--color-primary);
+
+    &::after {
+      transform: translateX(18px);
+    }
+  }
+
+  &__input:focus-visible + &__track {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

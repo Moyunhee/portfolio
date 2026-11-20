@@ -1,0 +1,67 @@
+@use "../abstracts" as *;
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  padding-top: var(--safe-top);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-nav-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-height);
+  }
+
+  &__brand {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  // Profile summary next to the brand
+  &__meta {
+    display: flex;
+    flex: 1;
+    flex-wrap: nowrap;
+    min-width: 0;
+    margin: 0 16px 0 20px;
+    overflow: hidden;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    white-space: nowrap;
+
+    b {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    @include respond(mobile) {
+      justify-content: flex-end;
+      margin: 0 8px;
+      font-size: 0.8125rem;
+    }
+  }
+
+  &__item {
+    padding-right: 14px;
+    margin-right: 14px;
+    border-right: 1px solid var(--color-line);
+
+    &:last-child {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    // Secondary details are hidden on small screens
+    &--extra {
+      @include respond(mobile) {
+        display: none;
+      }
+    }
+  }
+}

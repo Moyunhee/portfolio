@@ -1,0 +1,65 @@
+@use "../abstracts" as *;
+
+// Full-width band with an interactive canvas background
+.hero {
+  position: relative;
+  padding: 88px 0 72px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-primary-soft), var(--color-bg) 70%);
+  touch-action: pan-y;
+
+  &__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__inner {
+    position: relative;
+  }
+
+  // Staggered entrance
+  &__inner > * {
+    animation: fade-up 0.7s $ease both;
+  }
+
+  @for $i from 2 through 4 {
+    &__inner > :nth-child(#{$i}) {
+      animation-delay: ($i - 1) * 0.1s;
+    }
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    font-size: clamp(2.5rem, 9vw, 4.75rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+
+  &__desc {
+    max-width: 29em;
+    margin-bottom: 28px;
+    font-size: clamp(1.0625rem, 2.6vw, 1.3125rem);
+    font-weight: 300;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @include respond(wide) {
+    padding-top: 112px;
+  }
+
+  @include respond(tablet) {
+    padding-block: 56px 60px;
+  }
+
+  @include respond(mobile) {
+    padding-block: 44px 52px;
+  }
+}

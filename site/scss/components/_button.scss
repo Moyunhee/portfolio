@@ -1,0 +1,106 @@
+@use "../abstracts" as *;
+
+.btn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid var(--color-control-line);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s;
+
+  @include hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+  }
+
+  &--primary {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  // Solid surface so the button stays readable over busy backgrounds
+  &--outline {
+    border: 1.5px solid var(--color-primary);
+    background: var(--color-surface);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  // For dark or colored backgrounds
+  &--light {
+    border-color: #fff;
+    background: #fff;
+    color: #7a2525;
+  }
+
+  &--text {
+    border-color: transparent;
+    color: var(--color-primary);
+  }
+
+  &--sm {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 0.875rem;
+  }
+
+  // Square icon button: one size variable keeps width and height equal
+  &--icon {
+    --icon-size: 44px;
+
+    flex: none;
+    justify-content: center;
+    width: var(--icon-size);
+    min-width: var(--icon-size);
+    height: var(--icon-size);
+    min-height: var(--icon-size);
+    padding: 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    transition: transform 0.3s, border-color 0.2s;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @include hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: rotate(180deg);
+    }
+
+    @include respond(mobile) {
+      --icon-size: 40px;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  // Loading state shows a spinner after the label
+  &.is-loading {
+    pointer-events: none;
+
+    &::after {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+  }
+}

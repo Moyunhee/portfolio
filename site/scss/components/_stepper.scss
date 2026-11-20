@@ -1,0 +1,161 @@
+@use "../abstracts" as *;
+
+// Step tabs: finished steps are freely reachable, later steps are locked
+.stepper {
+  width: 100%;
+
+  &__list {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  &__tab {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 12px;
+    border: 1px solid var(--color-control-line);
+    border-radius: 10px;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+
+    &.is-active {
+      border-color: var(--color-primary);
+      background: var(--color-primary-soft);
+      color: var(--color-text);
+    }
+
+    &.is-done {
+      color: var(--color-text);
+    }
+
+    &[aria-disabled="true"] {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  &__num {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-line);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  &__tab.is-active &__num,
+  &__tab.is-done &__num {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  &__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__panel {
+    min-height: 72px;
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }
+
+  // Mobile: connected step indicator (circle on top, label below)
+  @include respond(mobile) {
+    &__list {
+      gap: 0;
+      margin-bottom: 20px;
+    }
+
+    &__tab {
+      position: relative;
+      flex-direction: column;
+      gap: 6px;
+      justify-content: flex-start;
+      min-height: 68px;
+      padding: 8px 4px 6px;
+      border: 0;
+      border-radius: 8px;
+      background: none;
+      font-size: 0.75rem;
+      text-align: center;
+
+      &.is-active {
+        background: none;
+        color: var(--color-text);
+        font-weight: 700;
+      }
+
+      &[aria-disabled="true"] {
+        opacity: 1;
+        color: var(--color-muted);
+      }
+
+      // Line to the previous step
+      & + &::before {
+        content: "";
+        position: absolute;
+        top: 21px;
+        left: calc(-50% + 18px);
+        width: calc(100% - 36px);
+        height: 2px;
+        background: var(--color-line);
+        transition: background 0.3s;
+      }
+
+      &.is-done + &::before {
+        background: var(--color-primary);
+      }
+    }
+
+    &__num {
+      position: relative;
+      z-index: 1;
+      width: 28px;
+      height: 28px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    &__tab.is-active &__num {
+      box-shadow: 0 0 0 4px var(--color-primary-soft);
+    }
+
+    // Finished steps show a check mark instead of the number
+    &__tab.is-done:not(.is-active) &__num {
+      font-size: 0;
+
+      &::after {
+        content: "";
+        width: 9px;
+        height: 5px;
+        margin-top: -4px;
+        border-bottom: 2px solid currentColor;
+        border-left: 2px solid currentColor;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &__label {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@use "../abstracts" as *;
+
+// Sticky main tab bar
+.tabs {
+  position: sticky;
+  top: calc(var(--safe-top) + var(--nav-height));
+  z-index: 15;
+  background: var(--color-nav-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  &__list {
+    position: relative;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__tab {
+    min-height: var(--tabs-height);
+    padding: 0 18px;
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &.is-active {
+      color: var(--color-text);
+    }
+
+    @include hover {
+      color: var(--color-text);
+    }
+
+    @include respond(mobile) {
+      flex: 1;
+      padding: 0 8px;
+      text-align: center;
+    }
+  }
+
+  // Sliding underline under the active tab
+  &__bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: transform 0.35s $ease, width 0.35s $ease;
+  }
+}
+
+.tab-panel {
+  padding-bottom: 96px;
+
+  @include respond(mobile) {
+    padding-bottom: 72px;
+  }
+
+  &:not([hidden]) {
+    animation: fade-up 0.45s $ease;
+  }
+}

@@ -1,0 +1,117 @@
+@use "../abstracts" as *;
+
+:root {
+  @include theme(light);
+
+  --nav-height: #{$nav-height};
+  --tabs-height: #{$tabs-height};
+  --date-width: 140px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  box-sizing: border-box;
+  padding: var(--safe-top) 0 var(--safe-bottom);
+
+  @include respond(wide) {
+    --date-width: 160px;
+  }
+}
+
+// Light is the default; dark only when toggled
+:root[data-theme="dark"] {
+  @include theme(dark);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--safe-top) + var(--nav-height) + var(--tabs-height) + 8px);
+}
+
+body {
+  margin: 0;
+  padding-top: var(--nav-height);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 400 1rem/1.75 $font-family;
+  word-break: keep-all;
+  -webkit-text-size-adjust: 100%;
+  transition: background 0.3s, color 0.3s;
+
+  &:has(.modal[open]) {
+    overflow: hidden;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+main:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

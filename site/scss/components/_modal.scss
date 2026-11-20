@@ -1,0 +1,42 @@
+@use "../abstracts" as *;
+
+.modal {
+  width: min(440px, calc(100% - 32px));
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+
+  &::backdrop {
+    background: rgba(20, 12, 12, 0.5);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+
+  &[open] {
+    animation: pop 0.25s $ease;
+  }
+
+  &__body {
+    padding: 28px 28px 8px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  &__text {
+    color: var(--color-muted);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 20px 28px 24px;
+  }
+}

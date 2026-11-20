@@ -1,0 +1,46 @@
+@use "sass:map";
+@use "variables" as *;
+
+@mixin respond($name) {
+  $value: map.get($breakpoints, $name);
+
+  @if $name == wide {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+}
+
+@mixin theme($name) {
+  color-scheme: $name;
+
+  @each $key, $value in map.get($themes, $name) {
+    --color-#{$key}: #{$value};
+  }
+}
+
+// Hover only on pointer devices (avoids sticky hover on touch)
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Hidden visually, still focusable and read by screen readers
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

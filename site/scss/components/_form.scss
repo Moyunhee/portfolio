@@ -1,0 +1,95 @@
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &__label {
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  &__req {
+    margin-left: 2px;
+    color: var(--color-danger);
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--color-control-line);
+    border-radius: 8px;
+    background: var(--color-surface);
+    color: inherit;
+    font: inherit;
+    transition: border-color 0.2s;
+
+    &--area {
+      min-height: 104px;
+      padding: 12px 14px;
+      line-height: 1.6;
+      resize: vertical;
+    }
+
+    &::placeholder {
+      color: var(--color-muted);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: var(--color-danger);
+    }
+  }
+
+  &__help {
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+  }
+
+  &.is-error .field__help {
+    color: var(--color-danger);
+  }
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+  }
+}
+
+// Native select with a custom arrow
+.select {
+  position: relative;
+
+  .field__input {
+    padding-right: 40px;
+    appearance: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    pointer-events: none;
+    transform: translateY(-70%) rotate(45deg);
+  }
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+}

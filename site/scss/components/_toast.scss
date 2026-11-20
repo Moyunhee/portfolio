@@ -1,0 +1,24 @@
+@use "../abstracts" as *;
+
+// Stays in the accessibility tree so screen readers announce updates
+.toast {
+  position: fixed;
+  bottom: calc(24px + var(--safe-bottom));
+  left: 50%;
+  z-index: 60;
+  max-width: calc(100% - 32px);
+  padding: 12px 20px;
+  border-radius: 99px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 0.875rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 16px);
+  transition: opacity 0.25s, transform 0.25s $ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

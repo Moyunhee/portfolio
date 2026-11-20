@@ -1,0 +1,56 @@
+@use "../abstracts" as *;
+
+.section {
+  padding-top: 48px;
+
+  &__title {
+    margin-bottom: 6px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  &__desc {
+    margin-bottom: 22px;
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+
+    @include respond(mobile) {
+      margin-bottom: 16px;
+    }
+
+    // Keeps two columns aligned on desktop; not needed when stacked
+    &--spacer {
+      @include respond(mobile) {
+        display: none;
+      }
+    }
+  }
+
+  @include respond(mobile) {
+    padding-top: 40px;
+  }
+}
+
+// Live region text under the filter
+.status {
+  min-height: 22px;
+  margin: 8px 0 10px;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+.stack > * + * {
+  margin-top: 28px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+
+  @include respond(mobile) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

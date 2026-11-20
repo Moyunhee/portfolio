@@ -1,0 +1,52 @@
+$font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+$ease: cubic-bezier(0.3, 0.8, 0.3, 1);
+$nav-height: 56px;
+$tabs-height: 52px;
+
+// Max-width breakpoints (wide is min-width)
+$breakpoints: (
+  sm: 360px,
+  mobile: 620px,
+  tablet: 1023px,
+  wide: 1280px
+);
+
+// Color tokens, output as --color-* custom properties
+$themes: (
+  light: (
+    bg: #f8f6f4,
+    surface: #ffffff,
+    text: #2b2420,
+    muted: #6b605a,
+    line: #e2dcd6,
+    control-line: #9a8f88,
+    primary: #9c3434,
+    on-primary: #ffffff,
+    primary-soft: #f6e4e2,
+    danger: #b3261e,
+    icon-bg: #9c3434,
+    nav-bg: rgba(248, 246, 244, 0.86)
+  ),
+  dark: (
+    bg: #171211,
+    surface: #211a19,
+    text: #efe8e4,
+    muted: #b0a39c,
+    line: #382e2b,
+    control-line: #85787a,
+    primary: #e58a8a,
+    on-primary: #1a0f0f,
+    primary-soft: #3a2321,
+    danger: #ff9a92,
+    icon-bg: #b04848,
+    nav-bg: rgba(23, 18, 17, 0.86)
+  )
+);
+
+// Book image tones: [light from, light to, dark from, dark to]
+$book-tones: (
+  a: (#f1d4d0, #d99a94, #5a2d2d, #7c3d3d),
+  b: (#f3dfc9, #dbab83, #5a4230, #86603f),
+  c: (#e6d3dc, #bf8fa6, #4f3342, #75495f),
+  d: (#dbd3c6, #ad9d82, #484238, #6c604e)
+);

@@ -1,0 +1,11 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "scripts": {
+    "build": "sass site/scss/main.scss site/css/main.css --no-source-map",
+    "watch": "sass site/scss/main.scss site/css/main.css --no-source-map --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.108.2"
+  }
+}

@@ -1,0 +1,165 @@
+@use "../abstracts" as *;
+
+// Section heading row with side controls
+.section__head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+
+  @include respond(mobile) {
+    margin-bottom: 16px;
+  }
+
+  // Spacing moves to the row so the text and controls share one bottom line
+  .section__desc {
+    margin-bottom: 0;
+  }
+
+  .section__title {
+    margin-bottom: 6px;
+  }
+}
+
+.section__meta {
+  flex: none;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+
+  b {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  @include respond(mobile) {
+    display: none;
+  }
+}
+
+// Inquiry panel
+.inquiry {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  padding: 40px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background: var(--color-surface);
+
+  @include respond(tablet) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+
+  @include respond(mobile) {
+    padding: 24px 20px;
+  }
+
+  &__points {
+    display: grid;
+    gap: 8px;
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+
+    li {
+      position: relative;
+      padding-left: 18px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.7em;
+        left: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-primary);
+      }
+    }
+  }
+}
+
+.summary {
+  border-top: 1px solid var(--color-line);
+
+  &__row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  dt {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 500;
+    word-break: break-word;
+    white-space: pre-line;
+  }
+}
+
+.consent {
+  margin-top: 16px;
+
+  &__group {
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.done {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  text-align: center;
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  &__text b {
+    color: var(--color-primary);
+  }
+}
+
+// Terms inside the modal
+.terms {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9375rem;
+
+  dt {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+}

@@ -1,0 +1,41 @@
+@use "../abstracts" as *;
+
+.top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + var(--safe-bottom));
+  z-index: 15;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  @include hover {
+    transform: translateY(-3px);
+  }
+
+  @include respond(mobile) {
+    right: 14px;
+  }
+}
